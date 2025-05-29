@@ -26,6 +26,121 @@ migrate_working_dir/
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
+# Flutter/Dart/Pub related
+.dart_tool/# Flutter/Dart related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+*.lock
+
+# Ignore environment files
+.env
+
+# IDE settings
+.idea/
+.vscode/
+*.iml
+
+# iOS
+ios/Flutter/
+ios/.symlinks/
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/build/
+*.xcuserstate
+
+# Android
+android/.gradle/
+android/captures/
+android/local.properties
+android/build/
+
+# macOS
+macos/Pods/
+macos/Runner.xcworkspace/
+macos/build/
+
+# Windows
+windows/build/
+
+# Linux
+linux/build/
+
+# Web
+web/build/
+
+# Temporary or log files
+*.log
+*.tmp
+
+# Ignore non-Dart source files (to remove from GitHub language stats)
+
+*.cpp
+*.cc
+*.h
+*.hpp
+*.cmake
+*.html
+CMakeLists.txt
+
+.packages
+.pub-cache/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+
+# Obsolete
+pubspec.lock
+
+# iOS
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/build/
+*.xcuserstate
+
+# Android
+android/.gradle/
+android/captures/
+android/gradle.properties
+android/local.properties
+android/build/
+
+# VS Code & IntelliJ
+.vscode/
+.idea/
+*.iml
+
+# macOS
+macos/Flutter/Flutter.framework
+macos/Flutter/Flutter.podspec
+macos/Pods/
+macos/Runner.xcworkspace/
+macos/build/
+
+# Windows
+windows/build/
+
+# Web
+web/build/
+
+# Linux
+linux/build/
+
+# Generated Files
+*.log
+*.tmp
+
+# Environment variables
+.env
+
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
