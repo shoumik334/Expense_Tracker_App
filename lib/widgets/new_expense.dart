@@ -81,7 +81,7 @@ class _NewExpenseState extends State<NewExpense> {
             ],
           ),
 
-          Row(
+          Row( 
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ElevatedButton(
