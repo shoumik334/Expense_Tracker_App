@@ -26,7 +26,9 @@ class _ExpensesState extends State<Expenses> {
     setState(() {
       _registeredExpenses.remove(expense);
     });
-    ScaffoldMessenger.of(context).showSnackBar(      //Show messege after delet Expense and Alss undo delete Expenses
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      //Show messege after delet Expense and Alss undo delete Expenses
       SnackBar(
         duration: Duration(seconds: 3),
         content: const Text('Expense Deleted'),
