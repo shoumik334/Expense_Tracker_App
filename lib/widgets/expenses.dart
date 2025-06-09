@@ -15,33 +15,65 @@ class Expenses extends StatefulWidget {
 class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [];
 
-  void _addExpense(Expense expense){
+  void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
+  }
+
+  void _removeExpensse(Expense expense) {
+    final expenseIndex = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(      //Show messege after delet Expense and Alss undo delete Expenses
+      SnackBar(
+        duration: Duration(seconds: 3),
+        content: const Text('Expense Deleted'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      builder: (ctx) => NewExpense(onAddExpense: _addExpense,),
+      builder: (ctx) => NewExpense(onAddExpense: _addExpense),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No Expenses found.Start adding your Expenses'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        onRemovedExpense: _removeExpensse,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Fluter ExpenseTracker'),
-        actions: [IconButton(onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add))],
-      ),
-      body: Column(
-        children: [
-          Text('THE Chart'),
-          Expanded(child: ExpensesList(expenses: _registeredExpenses),),
+        actions: [
+          IconButton(
+            onPressed: _openAddExpenseOverlay,
+            icon: const Icon(Icons.add),
+          ),
         ],
       ),
+      body: Column(children: [Text('THE Chart'), Expanded(child: mainContent)]),
     );
   }
 }
