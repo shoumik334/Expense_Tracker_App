@@ -6,12 +6,45 @@ import 'package:expense_tracker_app/widgets/expenses.dart';
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 86, 174, 212),
 );
+var kDarkColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 1, 20, 62),
+);
 
 void main() {
   runApp(
     MaterialApp(
+      // Design For Dark Mode
+      darkTheme: ThemeData.dark().copyWith(
+        cardTheme: const CardTheme().copyWith(
+          color: kDarkColorScheme.secondaryContainer,
+          margin: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            side: BorderSide(color: const Color.fromARGB(255, 255, 255, 255)),
+          ),
+        ),
+
+        textTheme: TextTheme().copyWith(
+          bodySmall: TextStyle(color: const Color.fromARGB(255, 140, 136, 136)),
+        ),
+
+        appBarTheme: AppBarTheme().copyWith(
+          color: const Color.fromARGB(255, 50, 50, 50),
+        ),
+
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primaryContainer,
+            foregroundColor: kDarkColorScheme.onPrimaryContainer,
+          ),
+        ),
+        dropdownMenuTheme: DropdownMenuThemeData().copyWith(),
+      ),
+
+      //design for light mode
       theme: ThemeData().copyWith(
-        colorScheme: kColorScheme,
+        colorScheme: kDarkColorScheme,
 
         // Customize the AppBar appearance
         appBarTheme: AppBarTheme().copyWith(
@@ -33,6 +66,7 @@ void main() {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: kColorScheme.primaryContainer,
+            foregroundColor: kColorScheme.onPrimaryContainer,
           ),
         ),
 
@@ -44,7 +78,10 @@ void main() {
             fontSize: 14,
           ),
         ),
+         dropdownMenuTheme: DropdownMenuThemeData().copyWith(),
       ),
+
+      // themeMode: ThemeMode.system, // automatically aplied by system -default
       home: const Expenses(),
     ),
   );

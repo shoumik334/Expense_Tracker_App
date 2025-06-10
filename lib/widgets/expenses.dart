@@ -102,8 +102,10 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
+      
       body: Column(
-        children: [Text('Expenses List'), Expanded(child: mainContent)],
+        
+        children: [const SizedBox(height: 8,),Text('---Expense List---'), Expanded(child: mainContent)],
       ),
     );
   }
