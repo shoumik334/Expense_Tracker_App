@@ -14,7 +14,7 @@ class ExpenseItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            Text( 
               expense.title,
               style:
                   Theme.of(context)
