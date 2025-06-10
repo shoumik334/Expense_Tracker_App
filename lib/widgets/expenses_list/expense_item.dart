@@ -27,7 +27,7 @@ class ExpenseItem extends StatelessWidget {
                 // Display the amount with a dollar sign, formatted to 2 decimal places
                 Text('\$${expense.amount.toStringAsFixed(2)}'),
 
-                const Spacer(),
+                const Spacer(), 
                 Row(
                   children: [
                     Icon(categoryIcons[expense.category]),
