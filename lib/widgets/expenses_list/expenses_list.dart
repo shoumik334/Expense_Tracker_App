@@ -18,7 +18,7 @@ class ExpensesList extends StatelessWidget {
             //Make expense deletable on swipe
 
             key: ValueKey(expenses[index]),
-            background: Container(color: Theme.of(context).colorScheme.error.withValues(alpha: 0.091),
+            background: Container(color: Theme.of(context).colorScheme.error.withValues(alpha: 0.2),
             margin: EdgeInsets.symmetric(
               horizontal: Theme.of(context).cardTheme.margin!.horizontal,
             ),

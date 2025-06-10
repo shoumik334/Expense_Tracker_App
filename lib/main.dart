@@ -4,6 +4,7 @@ import 'package:expense_tracker_app/widgets/expenses.dart';
 
 // Define a color scheme using a seed color
 var kColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.light,
   seedColor: const Color.fromARGB(255, 86, 174, 212),
 );
 var kDarkColorScheme = ColorScheme.fromSeed(
@@ -77,8 +78,9 @@ void main() {
             color: kColorScheme.onPrimaryContainer,
             fontSize: 14,
           ),
+          
         ),
-         dropdownMenuTheme: DropdownMenuThemeData().copyWith(),
+        
       ),
 
       // themeMode: ThemeMode.system, // automatically aplied by system -default
