@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:expense_tracker_app/models/expense.dart';
 
-
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
   final void Function(Expense expense) onAddExpense;
@@ -20,10 +19,12 @@ class _NewExpenseState extends State<NewExpense> {
   DateTime? _selectedDate;
   Category _selectedCategory = Category.food;
 
+  // Function to show the date picker
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
 
+    // Show date picker and update selected date if a date is picked
     final pickedDate = await showDatePicker(
       context: context,
       initialDate: now,
@@ -35,10 +36,13 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  // Function to submit the expense data
   void _submitExpenseData() {
     final enteredAmount = double.tryParse(_amountController.text);
 
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+
+    // Check if any required field is missing or invalid
 
     if (_titleController.text.trim().isEmpty ||
         amountIsInvalid ||
@@ -63,6 +67,7 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
+    // If data is valid, pass it to the parent widget (onAddExpense function)
     widget.onAddExpense(
       Expense(
         title: _titleController.text,
@@ -84,22 +89,21 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16,48,16,16),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
-          //Slot for title writing
+          // Text field for the title
           TextField(
             controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(label: Text('Title')),
           ),
 
-          //Fill up Slots
+          /// Row for amount and date fields
           Row(
             children: [
               Expanded(
                 child: TextField(
-                  //Slot for fill up the amount
                   maxLength: 5,
                   controller: _amountController,
                   keyboardType: TextInputType.number,
@@ -136,7 +140,7 @@ class _NewExpenseState extends State<NewExpense> {
           ),
           const SizedBox(height: 16),
 
-          //Buttons
+          // Row for category dropdown and buttons (Cancel & Save Expense)
           Row(
             children: [
               DropdownButton(
