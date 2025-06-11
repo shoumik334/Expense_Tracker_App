@@ -45,7 +45,7 @@ void main() {
 
       //design for light mode
       theme: ThemeData().copyWith(
-        colorScheme: kDarkColorScheme,
+        colorScheme: kColorScheme,
 
         // Customize the AppBar appearance
         appBarTheme: AppBarTheme().copyWith(
