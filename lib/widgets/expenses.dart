@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker_app/models/expense.dart';
 import 'package:expense_tracker_app/widgets/expenses_list/expenses_list.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:expense_tracker_app/widgets/chart/chart.dart';
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
 
@@ -43,6 +43,8 @@ class _ExpensesState extends State<Expenses> {
     setState(() {
       _registeredExpenses.remove(expense);
     });
+
+
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       //Show messege after delet Expense and Als0 undo delete Expenses
@@ -105,7 +107,7 @@ class _ExpensesState extends State<Expenses> {
       
       body: Column(
         
-        children: [const SizedBox(height: 8,),Text('---Expense List---'), Expanded(child: mainContent)],
+        children: [Chart(expenses:  _registeredExpenses), Expanded(child: mainContent)],
       ),
     );
   }
