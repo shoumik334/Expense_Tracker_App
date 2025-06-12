@@ -4,6 +4,7 @@ import 'package:expense_tracker_app/models/expense.dart';
 import 'package:expense_tracker_app/widgets/expenses_list/expenses_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:expense_tracker_app/widgets/chart/chart.dart';
+
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
 
@@ -44,7 +45,6 @@ class _ExpensesState extends State<Expenses> {
       _registeredExpenses.remove(expense);
     });
 
-
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       //Show messege after delet Expense and Als0 undo delete Expenses
@@ -75,6 +75,8 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width; //Get the screen Width
+
     Widget mainContent = const Center(
       child: Text('No Expenses found.Start adding your Expenses'),
     );
@@ -104,11 +106,21 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      
-      body: Column(
-        
-        children: [Chart(expenses:  _registeredExpenses), Expanded(child: mainContent)],
-      ),
+
+      body:
+          width < 600
+              ? Column(
+                children: [
+                  Chart(expenses: _registeredExpenses),
+                  Expanded(child: mainContent),
+                ],
+              )
+              : Row(
+                children: [
+                  Expanded(child: Chart(expenses: _registeredExpenses)),
+                  Expanded(child: mainContent),
+                ],
+              ),
     );
   }
 }
