@@ -16,6 +16,7 @@ class Chart extends StatelessWidget {
     ];
   }
 
+  // This getter calculates the maximum total expense across all buckets
   double get maxTotalExpense {
     double maxTotalExpense = 0;
 
@@ -45,8 +46,68 @@ class Chart extends StatelessWidget {
             Theme.of(context).colorScheme.primary.withAlpha(0),
           ],
           begin: Alignment.bottomCenter,
-          end:Alignment.topCenter,
+          end: Alignment.topCenter,
         ),
+      ),
+      child: Column(
+        children: [
+          // Expanded widget allows the child to take available space.
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                // Creating ChartBar widgets dynamically for each bucket
+                for (final bucket in buckets)
+                  ChartBar(
+                    fill:
+                        bucket.totalExpenses == 0
+                            ? 0
+                            : bucket.totalExpenses / maxTotalExpense,
+                  ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 12),
+
+          // Row for displaying icons representing categories
+          Row(
+            children: [
+              for (final bucket in buckets)
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Icon(
+                      categoryIcons[bucket.category],
+
+                      color:
+                          isDarkMode
+                              ? Theme.of(context).colorScheme.secondary
+                              : Theme.of(
+                                context,
+                              ).colorScheme.primary.withAlpha(500),
+                    ),
+                  ),
+                ),
+            ],
+            //Using Map
+            // children: buckets
+            //     .map(
+            //       (bucket) => Expanded(
+            //         child: Padding(
+            //           padding: const EdgeInsets.symmetric(horizontal: 4),
+            //           child: Icon(
+            //             categoryIcons[bucket.category],
+            //             color: isDarkMode
+            //                 ? Theme.of(context).colorScheme.secondary
+            //                 : Theme.of(context).colorScheme.primary.withOpacity(0.7),
+            //           ),
+            //         ),
+            //       ),
+            //     )
+            //     .toList(),
+          ),
+        ],
       ),
     );
   }
