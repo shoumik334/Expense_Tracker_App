@@ -235,70 +235,69 @@ class _NewExpenseState extends State<NewExpense> {
                   const SizedBox(height: 16),
 
                   // Row for category dropdown and buttons (Cancel & Save Expense)
+                  if (width >= 600)
+                    Row(
+                      children: [
+                        const Spacer(),
 
-                  if (width>=600)
-                  Row(children: [
-                    const Spacer(),
+                        // Cancel Button
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('Cancel'),
+                        ),
 
-                      // Cancel Button
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Cancel'),
-                      ),
-
-                      // Save Expense Button
-                      SizedBox(width: 8),
-                      ElevatedButton(
-                        onPressed: _submitExpenseData,
-                        child: Text('Save Expense'),
-                      ),
-
-                  ],)
+                        // Save Expense Button
+                        SizedBox(width: 8),
+                        ElevatedButton(
+                          onPressed: _submitExpenseData,
+                          child: Text('Save Expense'),
+                        ),
+                      ],
+                    )
                   else
+                    Row(
+                      children: [
+                        DropdownButton(
+                          value: _selectedCategory,
+                          items:
+                              Category.values
+                                  .map(
+                                    (category) => DropdownMenuItem(
+                                      value: category,
+                                      child: Text(category.name.toUpperCase()),
+                                    ),
+                                  )
+                                  .toList(),
+                          onChanged: (value) {
+                            // if(value==null){
+                            //   return;
+                            // }
+                            setState(() {
+                              _selectedCategory = value!;
+                            });
+                          },
+                        ),
 
-                  Row(
-                    children: [
-                      DropdownButton(
-                        value: _selectedCategory,
-                        items:
-                            Category.values
-                                .map(
-                                  (category) => DropdownMenuItem(
-                                    value: category,
-                                    child: Text(category.name.toUpperCase()),
-                                  ),
-                                )
-                                .toList(),
-                        onChanged: (value) {
-                          // if(value==null){
-                          //   return;
-                          // }
-                          setState(() {
-                            _selectedCategory = value!;
-                          });
-                        },
-                      ),
+                        const Spacer(),
 
-                      const Spacer(),
+                        // Cancel Button
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('Cancel'),
+                        ),
 
-                      // Cancel Button
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Cancel'),
-                      ),
-
-                      // Save Expense Button
-                      SizedBox(width: 8),
-                      ElevatedButton(
-                        onPressed: _submitExpenseData,
-                        child: Text('Save Expense'),
-                      ),
-                    ],
-                  ),
+                        // Save Expense Button
+                        SizedBox(width: 8),
+                        ElevatedButton(
+                          onPressed: _submitExpenseData,
+                          child: Text('Save Expense'),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),
